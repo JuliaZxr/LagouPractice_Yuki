@@ -1,0 +1,5 @@
+"Status","Name","Duration in ms","Description"
+"passed","test_calc.TestCalc#test_div","1",""
+"passed","test_calc.TestCalc#test_add","1",""
+"passed","test_calc.TestCalc#test_div","1",""
+"passed","test_calc.TestCalc#test_add","2",""
