@@ -6,7 +6,8 @@
 
 """
 BasePage：页面类，供其他页面继承。
-    -
+    -driver
+    -查找元素方法
 
 """
 from selenium.webdriver.common.by import By
