@@ -7,6 +7,11 @@ from work7_appiumTest.page.contact_page import ContactPage
 
 
 class MemberInfoEditPage(BasePage):
-    # 个人信息编辑保存后跳转通讯录页面
+    # 确定删除人员后跳转通讯录页面
     def editMemberInfo(self):
+        # 点击该人员删除成员按钮
+        self.findById("com.tencent.wework:id/efq").click()
+        # 点击确定删除按钮
+        self.findById("com.tencent.wework:id/bit").click()
+
         return ContactPage(self.driver)

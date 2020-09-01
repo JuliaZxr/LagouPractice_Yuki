@@ -22,5 +22,6 @@ class ContactPage(BasePage):
 
     # 方法：通讯录页面跳转个人信息页面
     def goto_memberInfotmationPage(self, name):
-
+        self.findByXpath(f"//*[@text='{name}']").click()
         return MemberInfoPage(self.driver)
+

@@ -9,4 +9,5 @@ class MemberInfoPage(BasePage):
     # 跳转个人信息更多操作页面
     def goto_memberInfoMorePage(self):
         from work7_appiumTest.page.memberInfoMore_page import MemberInfoMorePage
+        self.findById("com.tencent.wework:id/hvd").click()
         return MemberInfoMorePage(self.driver)

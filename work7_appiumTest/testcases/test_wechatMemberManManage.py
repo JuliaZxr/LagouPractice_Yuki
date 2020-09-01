@@ -69,6 +69,7 @@ class TestMemberManage:
         toastText = addMembersByManual.get_toast()
         assert '添加成功' == toastText
 
+
     def test_delMember(self):
         """
             1、打开首页
@@ -86,7 +87,7 @@ class TestMemberManage:
         contactPage = mainPage.goto_contactPage()
 
         # 跳转个人信息页面
-        memberInfoPage = contactPage.goto_memberInfotmationPage()
+        memberInfoPage = contactPage.goto_memberInfotmationPage("Momo")
 
         # 跳转个人信息更多操作页面
         memberInfoMorePage = memberInfoPage.goto_memberInfoMorePage()
@@ -95,6 +96,14 @@ class TestMemberManage:
         memberInfoEdit = memberInfoMorePage.goto_memberInfoEditPage()
 
         # 完成个人信息编辑后保存返回通讯录页面
-        memberInfoEdit.editMemberInfo()
+        delRetuenContactPage = memberInfoEdit.editMemberInfo()
 
         # 断言：搜索不存在被删除人员
+
+        # 点击搜索框
+        delRetuenContactPage.findById("com.tencent.wework:id/hvn").click()
+        # 输入搜索关键字
+        delRetuenContactPage.findById("com.tencent.wework:id/gfs").send_keys("Momo")
+
+        searchResult = delRetuenContactPage.findById("com.tencent.wework:id/c_0").text
+        assert "无搜索结果" == searchResult
