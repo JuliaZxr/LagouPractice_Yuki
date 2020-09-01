@@ -37,7 +37,7 @@ class TestMemberManage:
         self.app.startApp()
         # self.mainPage = MainPage()
 
-    def teardowen(self):
+    def teardown(self):
         self.app.stopApp()
 
     @pytest.mark.parametrize("name, gender, tel", get_contactsData())
@@ -68,7 +68,6 @@ class TestMemberManage:
         # 断言：弹出toast提示->添加成功
         toastText = addMembersByManual.get_toast()
         assert '添加成功' == toastText
-
 
     def test_delMember(self):
         """
@@ -101,9 +100,9 @@ class TestMemberManage:
         # 断言：搜索不存在被删除人员
 
         # 点击搜索框
-        delRetuenContactPage.findById("com.tencent.wework:id/hvn").click()
+        delRetuenContactPage.findById("com.tencent.wework:id/hk9").click()
         # 输入搜索关键字
-        delRetuenContactPage.findById("com.tencent.wework:id/gfs").send_keys("Momo")
+        delRetuenContactPage.findById("com.tencent.wework:id/g75").send_keys("Momo")
 
-        searchResult = delRetuenContactPage.findById("com.tencent.wework:id/c_0").text
+        searchResult = delRetuenContactPage.findById("com.tencent.wework:id/c5m").text
         assert "无搜索结果" == searchResult

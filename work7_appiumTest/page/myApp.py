@@ -37,7 +37,7 @@ class MyApp(BasePage):
                 "noReset": "true"
             }
             self.driver = webdriver.Remote("http://127.0.0.1:4723/wd/hub", desire_cap)
-            self.driver.implicitly_wait(5)
+            self.driver.implicitly_wait(10)
         else:
             # 启动caps里设置的appPackage appActivity
             self.driver.launch_app()

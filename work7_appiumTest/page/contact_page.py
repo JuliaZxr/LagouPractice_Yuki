@@ -25,3 +25,7 @@ class ContactPage(BasePage):
         self.findByXpath(f"//*[@text='{name}']").click()
         return MemberInfoPage(self.driver)
 
+    # 方法：通讯录页面搜索成员
+    def searchMember(self):
+        return self
+
