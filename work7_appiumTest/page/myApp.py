@@ -47,8 +47,9 @@ class MyApp(BasePage):
 
     def stopApp(self):
         self.driver.quit()
-        pass
 
     # 方法：进入首页
     def goto_mainPage(self):
         return MainPage(self.driver)
+
+

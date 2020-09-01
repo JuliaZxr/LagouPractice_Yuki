@@ -28,7 +28,9 @@ from work7_appiumTest.page.myApp import MyApp
 def get_contactsData():
     with open("../datas/contacts.yml", encoding="utf-8") as f:
         datas = yaml.safe_load(f)
-    return datas
+        add_members = datas["addMem"]
+        del_members = datas["delMem"]
+    return [add_members, del_members]
 
 
 class TestMemberManage:
@@ -40,7 +42,7 @@ class TestMemberManage:
     def teardown(self):
         self.app.stopApp()
 
-    @pytest.mark.parametrize("name, gender, tel", get_contactsData())
+    @pytest.mark.parametrize("name, gender, tel", get_contactsData()[0])
     def test_addMemberByManual(self, name, gender, tel):
         """
             1、打开首页
@@ -69,7 +71,8 @@ class TestMemberManage:
         toastText = addMembersByManual.get_toast()
         assert '添加成功' == toastText
 
-    def test_delMember(self):
+    @pytest.mark.parametrize("name", get_contactsData()[1])
+    def test_delMember(self, name):
         """
             1、打开首页
             2、跳转通讯录页面
@@ -86,7 +89,7 @@ class TestMemberManage:
         contactPage = mainPage.goto_contactPage()
 
         # 跳转个人信息页面
-        memberInfoPage = contactPage.goto_memberInfotmationPage("Momo")
+        memberInfoPage = contactPage.goto_memberInfotmationPage(name)
 
         # 跳转个人信息更多操作页面
         memberInfoMorePage = memberInfoPage.goto_memberInfoMorePage()
@@ -97,12 +100,6 @@ class TestMemberManage:
         # 完成个人信息编辑后保存返回通讯录页面
         delRetuenContactPage = memberInfoEdit.editMemberInfo()
 
-        # 断言：搜索不存在被删除人员
-
-        # 点击搜索框
-        delRetuenContactPage.findById("com.tencent.wework:id/hk9").click()
-        # 输入搜索关键字
-        delRetuenContactPage.findById("com.tencent.wework:id/g75").send_keys("Momo")
-
-        searchResult = delRetuenContactPage.findById("com.tencent.wework:id/c5m").text
+        # 断言：搜索不存在已经被删除人员
+        searchResult = delRetuenContactPage.searchNoMember(name)
         assert "无搜索结果" == searchResult

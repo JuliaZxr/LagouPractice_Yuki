@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2020/8/31 22:15
 # @Author  : Yuki
+import logging
+
 from appium.webdriver.common.mobileby import MobileBy
 
 from work7_appiumTest.page.base_page import BasePage
@@ -26,6 +28,12 @@ class ContactPage(BasePage):
         return MemberInfoPage(self.driver)
 
     # 方法：通讯录页面搜索成员
-    def searchMember(self):
-        return self
-
+    def searchNoMember(self, name):
+        # 点击搜索框
+        self.findById("com.tencent.wework:id/hk9").click()
+        # 输入搜索关键字
+        self.findById("com.tencent.wework:id/g75").send_keys(name)
+        # 无该成员时返回搜索结果
+        searchResult = self.findById("com.tencent.wework:id/c5m").text
+        logging.info(searchResult)
+        return searchResult
