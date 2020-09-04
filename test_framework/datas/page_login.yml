@@ -1,0 +1,13 @@
+# 是对应login_page页面的一个数据驱动文件
+# 这个页面中存在方法：login（登录）、forget（忘记密码）
+# login方法中需要一些操作：find（通过id、text查找元素）、click、send_keys
+
+login:
+  - find: {id: xxx}
+  - click
+  - find: {text: xxx}
+  - send_keys: xxx
+
+forget:
+  - find: {id: xxx}
+  - click
