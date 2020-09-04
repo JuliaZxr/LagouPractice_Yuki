@@ -1,13 +1,22 @@
 # 是对应login_page页面的一个数据驱动文件
 # 这个页面中存在方法：login（登录）、forget（忘记密码）
 # login方法中需要一些操作：find（通过id、text查找元素）、click、send_keys
+# 这个整体的文件是个词典，每个key中对应的又是一个列表
 
 login:
   - find: {id: xxx}
-  - click
+  - click: []
   - find: {text: xxx}
   - send_keys: xxx
 
 forget:
   - find: {id: xxx}
-  - click
+  - click: []
+
+search:
+  - id: com.xueqiu.android:id/home_search
+  - click: []
+  - id: com.xueqiu.android:id/search_input_text
+  - send_keys: alibaba
+  - xpath: //*[@text="阿里巴巴"]
+  - click: []

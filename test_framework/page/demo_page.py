@@ -7,6 +7,9 @@ from test_framework.page.base_page import BasePage
 """
 DemoPage是定义个一个需要测试的页面，继承与基类BasePage
 在这个类中，定义这个页面需要的一个方法，eg.登录，忘记密码等
+
+search()方法实现后，再使用po的数据驱动去实现，将search需要的步骤写到yaml文件中，
+再在demo_page.py中去读取page_demo.yml数据
 """
 class DemoPage(BasePage):
     _search_button = (By.ID, "com.xueqiu.android:id/home_search")
@@ -20,5 +23,9 @@ class DemoPage(BasePage):
 
     # 定义的搜索方法，需要一个参数：keyword
     def search(self, keyword):
-        self.find(self._search_button).click()
+        # # 普通的search方法实现
+        # self.find(self._search_button).click()
+
+        # 通过po数据驱动实现
+        self.po_runSteps("search")
         return self

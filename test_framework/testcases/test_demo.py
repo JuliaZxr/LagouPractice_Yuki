@@ -39,5 +39,5 @@ class TestDemo:
         # "jd"
     ])
     def test_search(self, keyword):
-        self.demopage.send_keys(keyword)
+        self.demopage.search("search")
 
