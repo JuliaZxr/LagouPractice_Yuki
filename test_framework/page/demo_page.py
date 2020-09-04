@@ -8,7 +8,7 @@ from test_framework.page.base_page import BasePage
 DemoPage是定义个一个需要测试的页面，继承与基类BasePage
 在这个类中，定义这个页面需要的一个方法，eg.登录，忘记密码等
 """
-class LoginPage(BasePage):
+class DemoPage(BasePage):
     _search_button = (By.ID, "com.xueqiu.android:id/home_search")
    # TODO：PO的数据驱动
    # 定义的登录方法，需要两个参数：username, password

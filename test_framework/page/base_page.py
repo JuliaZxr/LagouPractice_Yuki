@@ -40,6 +40,8 @@ class BasePage:
 
     def send_keys(self, keyword):
         pass
+        # self._current_element.send_keys(keyword)
+        # return self
 
 
 

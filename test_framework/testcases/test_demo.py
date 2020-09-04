@@ -10,18 +10,18 @@
 """
 import pytest
 
-from test_framework.page.login_page import LoginPage
+from test_framework.page.demo_page import DemoPage
 
 
-class TestLogin:
-    def setup(self):
+class TestDemo:
+    def setup_class(self):
         # 初始化一个login页面
-        self.loginDemo = LoginPage()
+        self.demopage = DemoPage()
         # 启动app
-        self.loginDemo.start()
+        self.demopage.start()
 
     def teardown_class(self):
-        self.loginDemo.stop()
+        self.demopage.stop()
 
     # TODO：测试数据的数据驱动
     @pytest.mark.parametrize("username, password", [
@@ -30,7 +30,7 @@ class TestLogin:
     ] )
     def test_login(self, username, password):
         # TODO:登录测试步骤的数据驱动
-        self.loginDemo.loginIn(username, password)
+        self.demopage.loginIn(username, password)
         assert 1 == 1
 
     @pytest.mark.parametrize("keyword", [
@@ -39,5 +39,5 @@ class TestLogin:
         # "jd"
     ])
     def test_search(self, keyword):
-        self.loginDemo.send_keys(keyword)
+        self.demopage.send_keys(keyword)
 
