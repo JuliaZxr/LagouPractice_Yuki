@@ -95,6 +95,24 @@ class BasePage:
                         elif key == "click":
                             self.click()
                         elif key == "send_keys":
+                            """
+                            当key匹配"send_keys"后，
+                            step[key] 是取的 page_demo.yml文件中search下的send_keys对于的value值 ${keyword3}，即step[key] = ${keyword3}
+                            text = str(step[key]) 即：text = ‘${keyword3}‘
+                            
+                            po_runSteps(self, po_method, **kwargs)
+                            po_runSteps("search", keyword3=keyword2)
+                            **kwargs又表示关键字参数，它本质上是一个 dict，即通过keyword3=keyword2将‘alibaba’转化成dict == {‘keyword3’:'alibaba'}
+                            即：kwargs = {‘keyword3’:'alibaba'}
+                            for k, v in kwargs.items() --》即：k = ‘keyword3’，v = 'alibaba'
+                            
+                            text.replace("${" + k + "}", v) 的意思是将括号中，逗号后的内容替换逗号前的内容：
+                            其中"${" + k + "}"代表的是字符串拼接，由上一句可得k = ‘keyword3’，即"${" + k + "}" = “${keyword3}”
+                            text.replace("${" + k + "}", v)  == text.replace("${keyword3}", “alibaba”)
+                            就是当"${" + k + "}" 与page_demo.yml文件中search下的send_keys对于的value值 ${keyword3} 相同时，再进行替换
+                            将page_demo.yml文件中search下的send_keys对于的value值 ${keyword3}替换成“alibaba”
+                            
+                            """
                             text = str(step[key])
                             for k, v in kwargs.items():
                                 text = text.replace("${" + k + "}", v)

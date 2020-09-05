@@ -34,5 +34,13 @@ class DemoPage(BasePage):
         # self.find(self._search_button).click()
 
         # 通过po数据驱动实现
-        self.po_runSteps("search", keyword=keyword2)
+        """
+        keyword3=keyword2 中的keyword3 对应的是page_demo.yml文件中send_keys: ${keyword3}里的关键字keyword3
+
+        def po_runSteps(self, po_method, **kwargs):
+            在调用时，po_method = search；
+            search()方法传参过来，keyword2 = ‘alibaba’
+            **kwargs又表示关键字参数，它本质上是一个 dict，即通过keyword3=keyword2将‘alibaba’转化成dict == {‘keyword3’:'alibaba'}
+        """
+        self.po_runSteps("search", keyword3=keyword2)
         return self
