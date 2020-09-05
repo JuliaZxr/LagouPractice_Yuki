@@ -54,12 +54,18 @@ class BasePage:
 
     def po_runSteps(self, po_method):
         # 读取yml文件
-        with open("../datas/page_demo.yml") as f:
+        """
+            page_demo.yml是对应login_page页面的一个数据驱动文件
+            这个页面中存在方法：login（登录）、forget（忘记密码）、search等
+            login方法中需要一些操作：find（通过id、text查找元素）、click、send_keys
+            这个整体的文件是个词典，每个key中对应的又是一个列表
+        """
+        with open("../datas/page_demo.yml", encoding="utf-8") as f:
             yaml_data = yaml.safe_load(f)
-        # 找到对应的search（对应的yml文件中的key值），这里search就是po_method参数
-        # 找到的yaml_data[po_method]返回的是一个列表，再去循环列表中的每一步，判断是find，click，send_keys再继续处理
+            # 找到对应的search（对应的yml文件中的key值），这里search就是po_method参数
+            # 找到的yaml_data[po_method]返回的是一个列表，再去循环列表中的每一步，判断是find，click，send_keys再继续处理
             for step in yaml_data[po_method]:
-        # 再完成底层的find by click send_keys
+                # 再完成底层的find by click send_keys
                 """
                 isinstance() 函数来判断一个对象是否是一个已知的类型，类似 type()。
                 isinstance() 与 type() 区别：
@@ -83,17 +89,15 @@ class BasePage:
                             # 因为find（）方法中传递的是一个元组，所以在使用的是也需要是一个元组
                             locator = (By.ID, step[key])
                             self.find(locator)
+                        elif key == "xpath":
+                            locator = (By.XPATH, step[key])
+                            self.find_byXPATH(locator)
                         elif key == "click":
                             self.click()
                         elif key == "send_keys":
                             self.send_keys(step[key])
-                        elif key == "xpath":
-                            locator = (By.XPATH, step[key])
-                            self.find_byXPATH(locator)
+
                         # TODO：更多的关键字
                         else:
                             # 如果执行的是存在不是id click send_keys的操作，则输出日志
                             logging.error(f"dont know {step}")
-
-
-

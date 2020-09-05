@@ -11,10 +11,13 @@ DemoPage是定义个一个需要测试的页面，继承与基类BasePage
 search()方法实现后，再使用po的数据驱动去实现，将search需要的步骤写到yaml文件中，
 再在demo_page.py中去读取page_demo.yml数据
 """
+
+
 class DemoPage(BasePage):
-    _search_button = (By.ID, "com.xueqiu.android:id/home_search")
-   # TODO：PO的数据驱动
-   # 定义的登录方法，需要两个参数：username, password
+    # _search_button = (By.ID, "com.xueqiu.android:id/home_search")
+
+    # TODO：PO的数据驱动
+    # 定义的登录方法，需要两个参数：username, password
     def loginIn(self, username, password):
         pass
 
