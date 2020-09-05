@@ -52,7 +52,7 @@ class BasePage:
     def find_byXPATH(self, xpath):
         self._current_element = self._driver.find_element(*xpath)
 
-    def po_runSteps(self, po_method):
+    def po_runSteps(self, po_method, **kwargs):
         # 读取yml文件
         """
             page_demo.yml是对应login_page页面的一个数据驱动文件
@@ -95,7 +95,10 @@ class BasePage:
                         elif key == "click":
                             self.click()
                         elif key == "send_keys":
-                            self.send_keys(step[key])
+                            text = str(step[key])
+                            for k, v in kwargs.items():
+                                text = text.replace("${" + k + "}", v)
+                            self.send_keys(text)
 
                         # TODO：更多的关键字
                         else:

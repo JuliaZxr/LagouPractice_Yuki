@@ -24,11 +24,15 @@ class DemoPage(BasePage):
     def forget_pwd(self):
         pass
 
+    def back(self):
+        self.po_runSteps("back")
+        return self
+
     # 定义的搜索方法，需要一个参数：keyword
     def search(self, keyword):
         # # 普通的search方法实现
         # self.find(self._search_button).click()
 
         # 通过po数据驱动实现
-        self.po_runSteps("search")
+        self.po_runSteps("search", keyword=keyword)
         return self
