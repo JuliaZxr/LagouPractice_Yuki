@@ -29,10 +29,10 @@ class DemoPage(BasePage):
         return self
 
     # 定义的搜索方法，需要一个参数：keyword
-    def search(self, keyword):
+    def search(self, keyword2):
         # # 普通的search方法实现
         # self.find(self._search_button).click()
 
         # 通过po数据驱动实现
-        self.po_runSteps("search", keyword=keyword)
+        self.po_runSteps("search", keyword=keyword2)
         return self

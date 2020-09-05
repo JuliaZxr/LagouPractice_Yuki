@@ -1,4 +1,4 @@
 params:
-  - keyword: alibaba
-  - keyword: baidu
-  - keyword: jd
+  - keyword1: alibaba
+  - keyword1: baidu
+  - keyword1: jd
