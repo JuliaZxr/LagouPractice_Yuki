@@ -10,7 +10,9 @@
 """
 import pytest
 
+from test_framework.page.base_page import BasePage
 from test_framework.page.demo_page import DemoPage
+from test_framework.page.login_page import LoginPage
 from test_framework.utils.file_util import FileUtil
 
 
@@ -21,10 +23,12 @@ class TestDemo:
     data = FileUtil.from_file(testcase_file)
 
     def setup_class(self):
+        self.app = BasePage()
+        self.app.start()
         # 初始化一个login页面
         self.demopage = DemoPage(self.po_file)
         # 启动app
-        self.demopage.start()
+        # self.demopage.start()
 
     def setup(self):
         pass
@@ -53,3 +57,9 @@ class TestDemo:
     @pytest.mark.parametrize(data["keys"], data["values"])
     def test_search(self, keyword1):
         self.demopage.search(keyword1)
+
+    def test_loginByPassword(self):
+        po_file = "../datas/page_login.yml"
+        login = LoginPage(po_file)
+        # login.start()
+        login.login_by_password("13322226666", "111111")
