@@ -21,6 +21,10 @@ class BasePage:
     _driver: WebDriver = None
     _current_element: WebElement = None
 
+    def __init__(self, po_file = None):
+        if po_file is not None:
+            self._po_file = po_file
+
     def start(self):
         caps = {
             "platformName": "android",
@@ -60,7 +64,8 @@ class BasePage:
             login方法中需要一些操作：find（通过id、text查找元素）、click、send_keys
             这个整体的文件是个词典，每个key中对应的又是一个列表
         """
-        with open("../datas/page_demo.yml", encoding="utf-8") as f:
+        # with open("../datas/page_demo.yml", encoding="utf-8") as f:
+        with open(self._po_file, encoding="utf-8") as f:
             yaml_data = yaml.safe_load(f)
             # 找到对应的search（对应的yml文件中的key值），这里search就是po_method参数
             # 找到的yaml_data[po_method]返回的是一个列表，再去循环列表中的每一步，判断是find，click，send_keys再继续处理

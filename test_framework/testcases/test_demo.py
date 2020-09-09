@@ -15,11 +15,14 @@ from test_framework.utils.file_util import FileUtil
 
 
 class TestDemo:
-    data = FileUtil.from_file("../datas/test_search.yml")
+    testcase_file = "../datas/test_search.yml"
+    po_file = "../datas/page_demo.yml"
+
+    data = FileUtil.from_file(testcase_file)
 
     def setup_class(self):
         # 初始化一个login页面
-        self.demopage = DemoPage()
+        self.demopage = DemoPage(self.po_file)
         # 启动app
         self.demopage.start()
 
