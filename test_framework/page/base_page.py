@@ -16,6 +16,8 @@ from appium.webdriver.common.mobileby import MobileBy
 from appium.webdriver.webdriver import WebDriver
 from selenium.webdriver.common.by import By
 
+from test_framework.page.log import log
+
 
 class BasePage:
     _driver: WebDriver = None
@@ -62,6 +64,7 @@ class BasePage:
         self._current_element = BasePage._driver.find_element(*xpath)
 
     def po_runSteps(self, po_method, **kwargs):
+        log.debug(f"po_runSteps {po_method} {kwargs}")
         # 读取yml文件
         """
             page_demo.yml是对应login_page页面的一个数据驱动文件

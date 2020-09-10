@@ -11,8 +11,8 @@
 import pytest
 
 from test_framework.page.base_page import BasePage
+from test_framework.page.common_page import CommonPage
 from test_framework.page.demo_page import DemoPage
-from test_framework.page.login_page import LoginPage
 from test_framework.utils.file_util import FileUtil
 
 
@@ -33,11 +33,11 @@ class TestDemo:
     def setup(self):
         pass
 
-    def teardown(self):
-        self.demopage.back()
+    # def teardown(self):
+    #     self.demopage.back()
 
     def teardown_class(self):
-        self.demopage.stop()
+        self.app.stop()
 
     # TODO：测试数据的数据驱动
     @pytest.mark.parametrize("username, password", [
@@ -57,9 +57,16 @@ class TestDemo:
     @pytest.mark.parametrize(data["keys"], data["values"])
     def test_search(self, keyword1):
         self.demopage.search(keyword1)
+        self.demopage.back()
 
     def test_loginByPassword(self):
         po_file = "../datas/page_login.yml"
-        login = LoginPage(po_file)
+        login = CommonPage(po_file)
         # login.start()
-        login.login_by_password("13322226666", "111111")
+
+        # 当执行找不到对应属性或方法时，会调用__getattr__方法，借助于__getattr__方法实现任意方法代理
+        # login.xxxx => login.__getattr__
+        # login.login_by_password() =>print()
+        # print("13322226666", "111111")
+        # login.login_by_password("13322226666", "111111")
+        login.login_by_password(username = "13322226666", password = "111111")
