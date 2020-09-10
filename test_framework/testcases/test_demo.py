@@ -12,7 +12,6 @@ import pytest
 
 from test_framework.page.base_page import BasePage
 from test_framework.page.common_page import CommonPage
-from test_framework.page.demo_page import DemoPage
 from test_framework.utils.file_util import FileUtil
 
 
@@ -26,39 +25,11 @@ class TestDemo:
         self.app = BasePage()
         self.app.start()
 
-        # 启动app
-        # self.demopage.start()
-
     def setup(self):
         pass
 
-    # def teardown(self):
-    #     self.demopage.back()
-
     def teardown_class(self):
         self.app.stop()
-
-    # TODO：测试数据的数据驱动
-    @pytest.mark.parametrize("username, password", [
-        ("user1", "pwd1"),
-        ("user2", "pwd2")
-    ])
-    def test_login(self, username, password):
-        # TODO:登录测试步骤的数据驱动
-        self.demopage.loginIn(username, password)
-        assert 1 == 1
-
-    # @pytest.mark.parametrize("keyword", [
-    #     "alibaba",
-    #     "baidu",
-    #     "jd"
-    # ])
-    @pytest.mark.parametrize(data["keys"], data["values"])
-    def test_search(self, keyword1):
-        # 初始化一个login页面
-        self.demopage = DemoPage(self.po_file)
-        self.demopage.search(keyword1)
-        self.demopage.back()
 
     # 用common_page代替demo_page
     @pytest.mark.parametrize(data["keys"], data["values"])
