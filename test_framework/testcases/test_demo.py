@@ -25,8 +25,7 @@ class TestDemo:
     def setup_class(self):
         self.app = BasePage()
         self.app.start()
-        # 初始化一个login页面
-        self.demopage = DemoPage(self.po_file)
+
         # 启动app
         # self.demopage.start()
 
@@ -56,8 +55,17 @@ class TestDemo:
     # ])
     @pytest.mark.parametrize(data["keys"], data["values"])
     def test_search(self, keyword1):
+        # 初始化一个login页面
+        self.demopage = DemoPage(self.po_file)
         self.demopage.search(keyword1)
         self.demopage.back()
+
+    # 用common_page代替demo_page
+    @pytest.mark.parametrize(data["keys"], data["values"])
+    def test_search_common_page(self, keyword1):
+        demo = CommonPage(self.po_file)
+        demo.search(keyword3 = keyword1)
+        demo.back()
 
     def test_loginByPassword(self):
         po_file = "../datas/page_login.yml"
