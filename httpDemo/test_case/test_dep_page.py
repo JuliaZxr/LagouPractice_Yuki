@@ -6,7 +6,7 @@ from httpDemo.api_page.contact_page import ContactPage
 
 
 class TestContactPage:
-    def setup(self):
+    def setup_class(self):
         # 初始化通讯录页面对象
         self.contact_page = ContactPage()
 
