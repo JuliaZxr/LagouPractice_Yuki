@@ -63,6 +63,15 @@ print("func4()两个参数的积为：", func4(5, 6))
 
 def func4_same(x, y):
     print("用def定义函数func4_same()的参数乘积是：", x * y)
+    print("\n")
 
 
 func4_same(5, 6)
+
+
+def func5(a=5):
+    return a
+
+
+# 查看并打印返回值
+print(func5())

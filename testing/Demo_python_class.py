@@ -11,6 +11,8 @@
 实例变量：以‘self.变量名’的方式定义的变量
 
 """
+
+
 # 通过class关键字，定义一个类Person
 class Person:
     # 定义类变量：在整个实例化的对象中是公用的
@@ -26,6 +28,7 @@ class Person:
     
     例如我们可以在这里设置属性，set_name、age、gender、weight
     """
+
     def __init__(self, name, age, gender, weight):
         print("init function")
         # self.变量名的方式，访问到的变量，叫做实例变量（即每一个实例拥有的属性）
@@ -65,7 +68,7 @@ class Person:
 
 类方法和实例方法的区别：
 1、类方法是不能访问 实例方法
-2、类方法要通过添加一个装饰器 @classmethod 
+2、类方法要通过添加一个装饰器 @classmethod 才能访问实例方法
 """
 
 # 类的实例化，创造了一个实例，zs就是实例化的对象

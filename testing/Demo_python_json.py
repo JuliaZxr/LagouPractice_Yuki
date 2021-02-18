@@ -12,7 +12,7 @@ json是由列表和字典组成的
 dataDic = {
     "name": ["yuki", "momo"],
     "age": 18,
-    "gender": "gir"
+    "gender": "girl"
 }
 
 # 查看并打印dataDic的类型

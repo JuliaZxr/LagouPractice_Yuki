@@ -38,6 +38,42 @@ list_momo.sort(reverse=True)
 print("列表降序为：", list_momo)
 print("\n")
 
+"""
+元组：使用()进行定义
+tuple、list、range都是序列数据类型
+元组是不可变的，可以通过解包、索引来访问
+
+tuple.count(x) 用来统计该元组中x出现的个数
+tuple.index(x) 用来得到该元组中x的索引
+"""
+# 元组的定义
+tuple_yuki = (1, 2, 3)
+tuple_yuki2 = 1, 2, 3
+
+print("tuple_yuki", tuple_yuki)
+print(type(tuple_yuki))
+
+print("tuple_yuki2", tuple_yuki2)
+print(type(tuple_yuki2))
+
+# 元组的不可变特性：元组内的值不可变，执行会报错；但是嵌套在元组里的列表，可以进行修改
+a = [1, 2, 3]
+tuple_yuki4 = (1, 2, a)
+print(tuple_yuki4)
+
+tuple_yuki4[2][0] = "a"
+print(tuple_yuki4)
+
+# tuple.count(x) 用来统计该元组中x出现的个数
+tuple_yuki5 = (1, 2, 3, "a", "a", "b")
+print(tuple_yuki5.count(3))
+print(tuple_yuki5.count("a"))
+print(tuple_yuki5.count("c"))
+
+# tuple.index(x) 用来得到该元组中x的索引,当元组中x存在多个时，返回的是第一个x的索引
+print(tuple_yuki5.index(3))
+print(tuple_yuki5.index("a"))
+
 # 列表推导式
 """
 用for循环生成一个平方列表[1,4,9]
@@ -76,25 +112,57 @@ print("集合a、b的并集：", a.union(b))
 print("集合a、b的交集：", a.intersection(b))
 print("集合a、b的差集：", a.difference(b), "\n")
 
+# 将字符串去重变成集合
 print({i for i in "abcaassddw"})
 
+"""
+将字符串去重变成无序集合 or 有序列表
+
+sort 与 sorted 区别：
+sort 是应用在 list 上的方法，sorted 可以对所有可迭代的对象进行排序操作。
+list 的 sort 方法返回的是对已经存在的列表进行操作，而内建函数 sorted 方法返回的是一个新的 list，而不是在原来的基础上进行的操作。
+
+sorted(iterable, key=None, reverse=False)  
+iterable -- 可迭代对象。
+key -- 主要是用来进行比较的元素，只有一个参数，具体的函数的参数就是取自于可迭代对象中，指定可迭代对象中的一个元素来进行排序。
+reverse -- 排序规则，reverse = True 降序 ， reverse = False 升序（默认）。
+返回重新排序的列表。
+"""
 # 将字符串去重变成集合
 c = "aabbxbcdbs"
-print(set(c))
+print("c的类型是：", type(c))
+print("将字符串c去重变成无序集合：", set(c))  # set是集合，这里利用的是集合不重复的特点，但是set是无序集合，所以打印出来的顺序与字符串不一致
+print("set(c)的类型是：", type(set(c)))
+
+# 将字符串先转换成list,再使用sorted()按照原list顺序进行去重后返回
+list_c3 = sorted(set(c), key=list(c).index)  # sorted(L)返回一个排序后的L，不改变原始的L
+print("list_c3的类型是：", type(list_c3))
+print("将字符串c去重后变成不改变顺序的列表：", list_c3)
 
 
 """
 字典：
 以【关键字】为索引
 关键字可以是任意不可变类型，通常是字符串或数字
+字典内key可以重复，但是会被覆盖
+dict.pop(x) 指删除字典中key为x的键值对
 """
-momo_dict = {"a":1, "b":2}
+momo_dict = {"a": 1, "b": 2}
 momo_dict2 = dict(a=1, b=2)
 
-print(momo_dict)
-print(momo_dict2)
+print("将字典dict打印出来：", momo_dict)
+print("将字典dict2打印出来：", momo_dict2)
 
 # 打印字典里的所有关键字
 print("字典momo_dict里的所有关键字：", momo_dict.keys())
-# 打印字典里的所有指
+# 打印字典里的所有值
 print("字典momo_dict里的所有值：", momo_dict.values())
+
+momo_dict3 = {"a": 1, "b": 2, "c": 3, "d": 4}
+print("将字典dict3打印出来：", momo_dict3)
+momo_dict3.pop("a")
+print("删除字典中key为a的所有键值对后输出：", momo_dict3)
+
+# 字典内key可以重复，但是会被覆盖
+momo_dict4 = {"a": 1, "b": 2, "a": 3, "d": 4}
+print("将字典dict4打印出来，查看重名的key是否被覆盖：", momo_dict4)

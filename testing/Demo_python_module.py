@@ -20,6 +20,6 @@ dir(sys) 找出参数模块定义的对象
 """
 import sys
 
-print(dir(sys))
+print("\n", dir(sys))
 
-print(sys.path)
+print("\n", sys.path)

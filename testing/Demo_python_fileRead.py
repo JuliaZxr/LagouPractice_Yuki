@@ -54,3 +54,7 @@ with语句块，可以将文件打开，执行完毕后，自动关闭这个文�
 
 with open('Demo_data.txt') as f:
     print(f.readlines())
+
+# 图片要使用rb去读取二进制格式
+with open('1.jpg', 'rb') as f:
+    print(f.readlines())

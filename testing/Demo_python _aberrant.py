@@ -23,7 +23,6 @@ try:
 #     没有异常时执行的代码、
 # finally：
 #     不管有没有异常都会执行的代码
-
 except:
     print("被除数不能为0 或 输入的需要是数值型整数")
 else:
@@ -31,7 +30,7 @@ else:
 finally:
     print("已经执行完了")
 
-# 抛出异常
+# 抛出异常raise Exception
 
 x = int(input("请输入一个数值型整数："))
 if x > 5:
@@ -45,4 +44,5 @@ class MyException(Exception):
         self.value2 = value2
 
 
+# 抛出自定义的异常类
 raise MyException("value1", "value2")
