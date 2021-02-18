@@ -23,31 +23,59 @@ class ContactPage(BaseApi):
         self.token = self.utils.getToken(_corpsecret)
 
     def get_dep(self):
-        url = f"https://qyapi.weixin.qq.com/cgi-bin/department/list?access_token={self.token}&id=1"
-        return requests.get(url).json()
+
+        # return requests.get(url).json()
+        data = {
+            "method" : "get",
+            "url" : f"https://qyapi.weixin.qq.com/cgi-bin/department/list",
+            "params" : {
+                "access_token" : self.token,
+                "id" : "1"
+            }
+        }
+        return self.send_api(**data)
 
     def add_dep(self):
-        url = f"https://qyapi.weixin.qq.com/cgi-bin/department/create?access_token={self.token}"
-        depData = {
-            "name": "测试一部",
-            "name_en": "CSYB",
-            "parentid": 2,
-            "order": 2,
-            "id": 3
+        data = {
+            "method": "post",
+            "url": f"https://qyapi.weixin.qq.com/cgi-bin/department/create",
+            "params": {
+                "access_token": self.token
+            },
+            "json" : {
+                "name": "测试一部",
+                "name_en": "CSYB",
+                "parentid": 2,
+                "order": 2,
+                "id": 3
+             }
         }
-        return requests.post(url, json=depData).json()
+        return self.send_api(**data)
 
     def update_dep(self):
-        url = f"https://qyapi.weixin.qq.com/cgi-bin/department/update?access_token={self.token}"
-        depData = {
-            "id": 3,
-            "name": "测试二部",
-            "name_en": "CSEB",
-            "parentid": 2,
-            "order": 2
+        data = {
+            "method": "post",
+            "url": f"https://qyapi.weixin.qq.com/cgi-bin/department/update",
+            "params": {
+                "access_token": self.token
+            },
+            "json": {
+                "id": 3,
+                "name": "测试二部",
+                "name_en": "CSEB",
+                "parentid": 2,
+                "order": 2
+            }
         }
-        return requests.post(url, json=depData).json()
+        return self.send_api(**data)
 
     def delete_dep(self):
-        url = f"https://qyapi.weixin.qq.com/cgi-bin/department/delete?access_token={self.token}&id=3"
-        return requests.get(url).json()
+        data = {
+            "method": "get",
+            "url": f"https://qyapi.weixin.qq.com/cgi-bin/department/delete",
+            "params": {
+                "access_token": self.token,
+                "id": "3"
+            }
+        }
+        return self.send_api(**data)
