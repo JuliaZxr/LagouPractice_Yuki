@@ -1,4 +1,4 @@
-#!/usr/bin/env pytho
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 需要driver，定义一个私有_driver，设置类型是WebDriver，且定义为None

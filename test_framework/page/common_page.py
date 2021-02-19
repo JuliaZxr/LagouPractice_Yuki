@@ -1,4 +1,4 @@
-#!/usr/bin/env pytho
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from test_framework.page.base_page import BasePage
 from test_framework.page.log import log
